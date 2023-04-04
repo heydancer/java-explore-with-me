@@ -19,7 +19,7 @@ public class WebClientConfig {
     private static final int TIMEOUT = 5000;
 
     @Bean
-    public WebClient webClientWithTimeout(@Value("${stats-service.url}") String url) {
+    public WebClient webClientWithTimeout(@Value("${stats-server.url}") String url) {
         final HttpClient httpClient = HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, TIMEOUT)
                 .responseTimeout(Duration.ofMillis(TIMEOUT))
