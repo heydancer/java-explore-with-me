@@ -1,11 +1,12 @@
-package ru.practicum.ewm;
+package ru.practicum.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExploreWithMeMain {
+public class ExploreWithMeStats {
     public static void main(String[] args) {
-        SpringApplication.run(ExploreWithMeMain.class, args);
+        SpringApplication.run(ExploreWithMeStats.class, args);
     }
 }
+

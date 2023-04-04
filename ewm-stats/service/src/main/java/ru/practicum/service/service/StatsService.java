@@ -1,12 +1,12 @@
-package ru.practicum.ewm.service;
+package ru.practicum.service.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.practicum.ewm.dto.ViewStats;
-import ru.practicum.ewm.repository.StatsRepository;
-import ru.practicum.ewm.utils.DateTimeCoder;
-import ru.practicum.ewm.dto.EndpointHitDTO;
-import ru.practicum.ewm.mapper.EndpointHitMapper;
+import ru.practicum.service.mapper.EndpointHitMapper;
+import ru.practicum.dto.ViewStats;
+import ru.practicum.service.utils.DateFormatter;
+import ru.practicum.service.repository.StatsRepository;
+import ru.practicum.dto.EndpointHitDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,7 +27,7 @@ public class StatsService {
     }
 
     public List<ViewStats> getStats(String start, String end, List<String> uris, Boolean unique) {
-        LocalDateTime[] localDateTimes = DateTimeCoder.decoder(start, end);
+        LocalDateTime[] localDateTimes = DateFormatter.decoder(start, end);
 
         if (!unique) {
             if (uris == null) {

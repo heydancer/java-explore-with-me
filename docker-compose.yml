@@ -31,14 +31,14 @@ services:
       - ewm-db
       - stats-service
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5433/ewm-main-db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/ewm-main
 
   ewm-db:
     image: postgres:12.1-alpine
     container_name: ewm_main_db
     ports:
-      - "6542:5433"
+      - "6542:5432"
     environment:
-      - POSTGRES_DB=main
+      - POSTGRES_DB=ewm-main
       - POSTGRES_USER=stats_user
       - POSTGRES_PASSWORD=12345

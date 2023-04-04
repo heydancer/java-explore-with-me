@@ -1,4 +1,4 @@
-package ru.practicum.ewm.controller;
+package ru.practicum.service.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import ru.practicum.ewm.dto.EndpointHitDTO;
-import ru.practicum.ewm.dto.ViewStats;
-import ru.practicum.ewm.service.StatsService;
+import ru.practicum.dto.EndpointHitDTO;
+import ru.practicum.dto.ViewStats;
+import ru.practicum.service.service.StatsService;
 
 import java.util.List;
 
