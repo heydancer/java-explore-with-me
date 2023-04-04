@@ -15,13 +15,11 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class WebClientConfig {
-    @Value(value = "${stats.server.url}")
-    private String url;
 
     private static final int TIMEOUT = 5000;
 
     @Bean
-    public WebClient webClientWithTimeout() {
+    public WebClient webClientWithTimeout(@Value("${stats-service.url}") String url) {
         final HttpClient httpClient = HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, TIMEOUT)
                 .responseTimeout(Duration.ofMillis(TIMEOUT))

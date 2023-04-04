@@ -2,6 +2,7 @@ package ru.practicum.service.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.service.mapper.EndpointHitMapper;
 import ru.practicum.dto.ViewStats;
 import ru.practicum.service.utils.DateFormatter;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class StatsService {
     private final StatsRepository statsRepository;
     private final EndpointHitMapper mapper;
@@ -22,6 +24,7 @@ public class StatsService {
         this.mapper = mapper;
     }
 
+    @Transactional
     public void addEndpointHit(EndpointHitDTO endpointHitDTO) {
         statsRepository.save(mapper.toModel(endpointHitDTO));
     }
