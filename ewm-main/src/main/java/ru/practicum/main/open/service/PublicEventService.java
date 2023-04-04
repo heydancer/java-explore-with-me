@@ -52,6 +52,8 @@ public class PublicEventService {
     }
 
     public EventFullDTO getPublicEvent(Long eventId, HttpServletRequest request) {
+        statsClient.addHit(hitMapper.toDTO(appName, request));
+
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new NotFoundException(
                         String.format("Failed to find event with id=%d", eventId)));
@@ -60,8 +62,6 @@ public class PublicEventService {
             throw new NotFoundException(
                     String.format("Event with id: %s is not published", eventId));
         }
-
-        statsClient.addHit(hitMapper.toDTO(appName, request));
 
         EventFullDTO fullDTO = eventMapper.toEventFullDTO(event);
 
@@ -74,6 +74,7 @@ public class PublicEventService {
     public List<EventShortDTO> getPublicEvents(String text, List<Long> categories, Boolean paid,
                                                String rangeStart, String rangeEnd, Boolean onlyAvailable,
                                                EventSort sort, Integer from, Integer size, HttpServletRequest request) {
+        statsClient.addHit(hitMapper.toDTO(appName, request));
 
         LocalDateTime start = rangeStart != null ? DateFormatter.toTime(rangeStart) : null;
         LocalDateTime end = rangeEnd != null ? DateFormatter.toTime(rangeEnd) : null;
@@ -84,8 +85,6 @@ public class PublicEventService {
 
         List<Event> events = eventRepository.findPublicEvents(text.toLowerCase(), categories, paid,
                 start, end, State.PUBLISHED, pageable);
-
-        statsClient.addHit(hitMapper.toDTO(appName, request));
 
         List<EventShortDTO> shortDTOS = events.stream()
                 .map(eventMapper::toEventShortDTO)
