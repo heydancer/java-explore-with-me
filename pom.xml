@@ -19,12 +19,11 @@
 
     <groupId>ru.practicum</groupId>
     <artifactId>explore-with-me</artifactId>
-    <version>${revision}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
         <java.version>11</java.version>
-        <revision>0.0.1-SNAPSHOT</revision>
         <lombok.version>1.18.26</lombok.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.boot.version>2.7.5</spring.boot.version>
