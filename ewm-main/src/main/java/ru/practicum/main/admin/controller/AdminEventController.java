@@ -1,8 +1,8 @@
 package ru.practicum.main.admin.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,15 +24,11 @@ import java.util.List;
 
 @Validated
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/admin/events")
 public class AdminEventController {
     private static final Logger log = LoggerFactory.getLogger(AdminEventController.class);
     private final AdminEventService eventService;
-
-    @Autowired
-    public AdminEventController(AdminEventService eventService) {
-        this.eventService = eventService;
-    }
 
     @GetMapping
     public List<EventFullDTO> getEvents(@RequestParam(required = false) List<Long> users,

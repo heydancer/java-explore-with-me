@@ -1,6 +1,6 @@
 package ru.practicum.main.open.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class PublicEventService {
     private final EndpointHitMapper hitMapper;
@@ -38,18 +39,6 @@ public class PublicEventService {
     private final StatsClient statsClient;
     @Value(value = "${app.name}")
     private String appName;
-
-    @Autowired
-    public PublicEventService(
-            EndpointHitMapper hitMapper,
-            EventRepository eventRepository,
-            EventMapper eventMapper,
-            StatsClient statsClient) {
-        this.hitMapper = hitMapper;
-        this.eventRepository = eventRepository;
-        this.eventMapper = eventMapper;
-        this.statsClient = statsClient;
-    }
 
     public EventFullDTO getPublicEvent(Long eventId, HttpServletRequest request) {
         statsClient.addHit(hitMapper.toDTO(appName, request));

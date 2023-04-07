@@ -1,6 +1,6 @@
 package ru.practicum.main.open.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,17 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class PublicCompilationService {
     private final CompilationRepository compilationRepository;
     private final CompilationMapper compilationMapper;
-
-    @Autowired
-    public PublicCompilationService(CompilationRepository compilationRepository,
-                                    CompilationMapper compilationMapper) {
-        this.compilationRepository = compilationRepository;
-        this.compilationMapper = compilationMapper;
-    }
 
     public List<CompilationDTO> getCompilations(Boolean pinned, Pageable pageable) {
         if (pinned == null) {

@@ -1,6 +1,6 @@
 package ru.practicum.main.common.mapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.practicum.main.common.dto.CompilationDTO;
 import ru.practicum.main.common.dto.NewCompilationDTO;
@@ -11,13 +11,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 public class CompilationMapper {
     private final EventMapper eventMapper;
-
-    @Autowired
-    public CompilationMapper(EventMapper eventMapper) {
-        this.eventMapper = eventMapper;
-    }
 
     public CompilationDTO toCompilationDTO(Compilation compilation) {
         return CompilationDTO.builder()

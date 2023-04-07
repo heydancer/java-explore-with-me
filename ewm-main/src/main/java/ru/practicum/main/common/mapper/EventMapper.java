@@ -1,6 +1,6 @@
 package ru.practicum.main.common.mapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.practicum.main.common.dto.EventFullDTO;
 import ru.practicum.main.common.dto.EventShortDTO;
@@ -10,15 +10,10 @@ import ru.practicum.main.common.model.Event;
 import java.time.LocalDateTime;
 
 @Component
+@RequiredArgsConstructor
 public class EventMapper {
     private final UserMapper userMapper;
     private final CategoryMapper categoryMapper;
-
-    @Autowired
-    public EventMapper(UserMapper userMapper, CategoryMapper categoryMapper) {
-        this.userMapper = userMapper;
-        this.categoryMapper = categoryMapper;
-    }
 
     public EventFullDTO toEventFullDTO(Event event) {
         return EventFullDTO.builder()
