@@ -1,6 +1,6 @@
 package ru.practicum.main.internal.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,15 +14,15 @@ import ru.practicum.main.common.dto.UpdateEventUserRequest;
 import ru.practicum.main.common.exception.ForbiddenException;
 import ru.practicum.main.common.exception.NotFoundException;
 import ru.practicum.main.common.mapper.EventMapper;
+import ru.practicum.main.common.mapper.RequestMapper;
 import ru.practicum.main.common.model.Category;
 import ru.practicum.main.common.model.Event;
+import ru.practicum.main.common.model.Request;
 import ru.practicum.main.common.model.User;
 import ru.practicum.main.common.repository.CategoryRepository;
 import ru.practicum.main.common.repository.EventRepository;
 import ru.practicum.main.common.repository.RequestRepository;
 import ru.practicum.main.common.repository.UserRepository;
-import ru.practicum.main.common.mapper.RequestMapper;
-import ru.practicum.main.common.model.Request;
 import ru.practicum.main.common.state.RequestStatus;
 import ru.practicum.main.common.state.State;
 import ru.practicum.main.common.state.UserStateAction;
@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class PrivateEventService {
     private final RequestRepository requestRepository;
@@ -41,21 +42,6 @@ public class PrivateEventService {
     private final CategoryRepository categoryRepository;
     private final EventMapper eventMapper;
     private final RequestMapper requestsMapper;
-
-    @Autowired
-    public PrivateEventService(RequestRepository requestRepository,
-                               EventRepository eventRepository,
-                               UserRepository userRepository,
-                               CategoryRepository categoryRepository,
-                               EventMapper eventMapper,
-                               RequestMapper requestsMapper) {
-        this.requestRepository = requestRepository;
-        this.eventRepository = eventRepository;
-        this.userRepository = userRepository;
-        this.categoryRepository = categoryRepository;
-        this.eventMapper = eventMapper;
-        this.requestsMapper = requestsMapper;
-    }
 
     @Transactional
     public EventFullDTO addEvent(Long userId, NewEventDTO newEventDTO) {

@@ -1,18 +1,18 @@
 package ru.practicum.main.internal.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.main.common.dto.ParticipationRequestDTO;
 import ru.practicum.main.common.exception.ForbiddenException;
 import ru.practicum.main.common.exception.NotFoundException;
+import ru.practicum.main.common.mapper.RequestMapper;
 import ru.practicum.main.common.model.Event;
+import ru.practicum.main.common.model.Request;
 import ru.practicum.main.common.model.User;
 import ru.practicum.main.common.repository.EventRepository;
 import ru.practicum.main.common.repository.RequestRepository;
 import ru.practicum.main.common.repository.UserRepository;
-import ru.practicum.main.common.mapper.RequestMapper;
-import ru.practicum.main.common.model.Request;
 import ru.practicum.main.common.state.RequestStatus;
 import ru.practicum.main.common.state.State;
 
@@ -21,20 +21,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class PrivateRequestService {
     private final RequestRepository requestRepository;
     private final UserRepository userRepository;
     private final EventRepository eventRepository;
     private final RequestMapper requestsMapper;
-
-    @Autowired
-    public PrivateRequestService(RequestRepository requestRepository, UserRepository userRepository, EventRepository eventRepository, RequestMapper requestsMapper) {
-        this.requestRepository = requestRepository;
-        this.userRepository = userRepository;
-        this.eventRepository = eventRepository;
-        this.requestsMapper = requestsMapper;
-    }
 
     @Transactional
     public ParticipationRequestDTO addRequest(Long userId, Long eventId) {

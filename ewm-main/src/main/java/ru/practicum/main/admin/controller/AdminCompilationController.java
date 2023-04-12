@@ -1,8 +1,8 @@
 package ru.practicum.main.admin.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -20,15 +20,11 @@ import ru.practicum.main.common.dto.UpdateCompilationRequest;
 import javax.validation.Valid;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/admin/compilations")
 public class AdminCompilationController {
     private static final Logger log = LoggerFactory.getLogger(AdminCategoryController.class);
     private final AdminCompilationService compilationService;
-
-    @Autowired
-    public AdminCompilationController(AdminCompilationService compilationService) {
-        this.compilationService = compilationService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

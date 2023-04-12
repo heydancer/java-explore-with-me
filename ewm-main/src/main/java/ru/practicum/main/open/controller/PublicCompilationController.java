@@ -1,8 +1,8 @@
 package ru.practicum.main.open.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +20,11 @@ import java.util.List;
 
 @Validated
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/compilations")
 public class PublicCompilationController {
     private static final Logger log = LoggerFactory.getLogger(PublicCompilationController.class);
     private final PublicCompilationService compilationService;
-
-    @Autowired
-    public PublicCompilationController(PublicCompilationService compilationService) {
-        this.compilationService = compilationService;
-    }
 
     @GetMapping
     public List<CompilationDTO> getCompilations(@RequestParam(required = false) Boolean pinned,

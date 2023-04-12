@@ -1,6 +1,6 @@
 package ru.practicum.main.open.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,17 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class PublicCategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
-
-    @Autowired
-    public PublicCategoryService(CategoryRepository categoryRepository,
-                                 CategoryMapper categoryMapper) {
-        this.categoryRepository = categoryRepository;
-        this.categoryMapper = categoryMapper;
-    }
 
     public List<CategoryDTO> getCategories(Pageable pageable) {
         return categoryRepository.findAll(pageable).stream()
