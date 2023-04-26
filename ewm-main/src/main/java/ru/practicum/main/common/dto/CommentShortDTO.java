@@ -15,6 +15,5 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CommentShortDTO {
     private String text;
-
     private LocalDateTime createdOn;
 }

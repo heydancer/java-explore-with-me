@@ -1,13 +1,13 @@
 package ru.practicum.main.admin.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.main.common.CustomPageRequest;
-import ru.practicum.main.common.dto.NewCategoryDTO;
 import ru.practicum.main.common.dto.CategoryDTO;
+import ru.practicum.main.common.dto.NewCategoryDTO;
 import ru.practicum.main.common.exception.NotFoundException;
 import ru.practicum.main.common.mapper.CategoryMapper;
 import ru.practicum.main.common.model.Category;
@@ -15,20 +15,12 @@ import ru.practicum.main.common.repository.CategoryRepository;
 import ru.practicum.main.common.repository.EventRepository;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class AdminCategoryService {
     private final CategoryRepository categoryRepository;
     private final EventRepository eventRepository;
     private final CategoryMapper categoryMapper;
-
-    @Autowired
-    public AdminCategoryService(CategoryRepository categoryRepository,
-                                EventRepository eventRepository,
-                                CategoryMapper categoryMapper) {
-        this.categoryRepository = categoryRepository;
-        this.eventRepository = eventRepository;
-        this.categoryMapper = categoryMapper;
-    }
 
     @Transactional
     public CategoryDTO addCategory(NewCategoryDTO newCategoryDTO) {
@@ -51,7 +43,7 @@ public class AdminCategoryService {
         Category category = checkCategory(catId);
 
         if (!eventRepository.findFirstByOrderByCategoryAsc(catId,
-                new CustomPageRequest(0,1, Sort.unsorted())).isEmpty()) {
+                new CustomPageRequest(0, 1, Sort.unsorted())).isEmpty()) {
             throw new DataIntegrityViolationException("The category is not empty");
         }
 

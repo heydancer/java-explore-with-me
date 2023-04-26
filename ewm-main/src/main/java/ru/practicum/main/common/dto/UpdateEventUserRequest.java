@@ -27,20 +27,14 @@ public class UpdateEventUserRequest {
 
     @Size(min = 20, max = 7000)
     private String description;
-
     private Long category;
 
     @Future
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime eventDate;
-
     private Location location;
-
     private Boolean paid;
-
     private Long participantLimit;
-
     private Boolean requestModeration;
-
     private UserStateAction stateAction;
 }

@@ -24,7 +24,6 @@ public class UpdateEventAdminRequest {
 
     @Size(min = 20, max = 2000)
     private String annotation;
-
     private Long category;
 
     @Size(min = 20, max = 7000)
@@ -33,14 +32,9 @@ public class UpdateEventAdminRequest {
     @Future
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime eventDate;
-
     private Location location;
-
     private Boolean paid;
-
     private Long participantLimit;
-
     private Boolean requestModeration;
-
     private AdminStateAction stateAction;
 }

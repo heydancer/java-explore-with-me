@@ -37,6 +37,7 @@ public class PublicEventService {
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
     private final StatsClient statsClient;
+
     @Value(value = "${app.name}")
     private String appName;
 
@@ -121,8 +122,8 @@ public class PublicEventService {
     }
 
     private List<ViewStats> getViews(List<Event> events) {
-        String min = "2000-01-01 00:00:00";
-        String max = "3000-01-01 00:00:00";
+        final String min = "2000-01-01 00:00:00";
+        final String max = "3000-01-01 00:00:00";
 
         String[] encoderTimes = DateFormatter.encoder(min, max);
 

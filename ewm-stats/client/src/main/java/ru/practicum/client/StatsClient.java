@@ -6,8 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import ru.practicum.dto.ViewStats;
 import ru.practicum.dto.EndpointHitDTO;
+import ru.practicum.dto.ViewStats;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class StatsClient {
         this.webClient = webClient;
     }
 
-    public Void addHit(EndpointHitDTO endpointHitDTO) {
-        return webClient
+    public void addHit(EndpointHitDTO endpointHitDTO) {
+        webClient
                 .post()
                 .uri("/hit")
                 .contentType(MediaType.APPLICATION_JSON)

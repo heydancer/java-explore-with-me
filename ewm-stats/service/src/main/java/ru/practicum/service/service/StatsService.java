@@ -1,28 +1,23 @@
 package ru.practicum.service.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.service.mapper.EndpointHitMapper;
-import ru.practicum.dto.ViewStats;
-import ru.practicum.service.utils.DateFormatter;
-import ru.practicum.service.repository.StatsRepository;
 import ru.practicum.dto.EndpointHitDTO;
+import ru.practicum.dto.ViewStats;
+import ru.practicum.service.mapper.EndpointHitMapper;
+import ru.practicum.service.repository.StatsRepository;
+import ru.practicum.service.utils.DateFormatter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class StatsService {
     private final StatsRepository statsRepository;
     private final EndpointHitMapper mapper;
-
-    @Autowired
-    public StatsService(StatsRepository statsRepository, EndpointHitMapper mapper) {
-        this.statsRepository = statsRepository;
-        this.mapper = mapper;
-    }
 
     @Transactional
     public void addEndpointHit(EndpointHitDTO endpointHitDTO) {

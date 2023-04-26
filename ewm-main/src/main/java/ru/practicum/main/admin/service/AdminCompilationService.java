@@ -1,6 +1,6 @@
 package ru.practicum.main.admin.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.main.common.dto.CompilationDTO;
@@ -19,20 +19,12 @@ import java.util.List;
 import java.util.Set;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class AdminCompilationService {
     private final CompilationRepository compilationRepository;
     private final CompilationMapper compilationMapper;
     private final EventRepository eventRepository;
-
-    @Autowired
-    public AdminCompilationService(CompilationRepository compilationRepository,
-                                   CompilationMapper compilationMapper,
-                                   EventRepository eventRepository) {
-        this.compilationRepository = compilationRepository;
-        this.compilationMapper = compilationMapper;
-        this.eventRepository = eventRepository;
-    }
 
     @Transactional
     public CompilationDTO addCompilation(NewCompilationDTO newCompilationDTO) {

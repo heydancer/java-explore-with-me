@@ -1,14 +1,14 @@
 package ru.practicum.service.mapper;
 
 import org.springframework.stereotype.Component;
-import ru.practicum.service.model.EndpointHit;
 import ru.practicum.dto.EndpointHitDTO;
+import ru.practicum.service.model.EndpointHit;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
 @Component
-public class EndpointHitMapper  {
+public class EndpointHitMapper {
     public EndpointHit toModel(EndpointHitDTO endpointHitDTO) {
         return EndpointHit.builder()
                 .id(endpointHitDTO.getId())

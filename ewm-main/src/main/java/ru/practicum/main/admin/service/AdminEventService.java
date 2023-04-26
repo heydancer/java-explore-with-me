@@ -1,6 +1,6 @@
 package ru.practicum.main.admin.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,20 +22,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class AdminEventService {
     private final EventRepository eventRepository;
     private final CategoryRepository categoryRepository;
     private final EventMapper eventMapper;
-
-    @Autowired
-    public AdminEventService(EventRepository eventRepository,
-                             CategoryRepository categoryRepository,
-                             EventMapper eventMapper) {
-        this.eventRepository = eventRepository;
-        this.categoryRepository = categoryRepository;
-        this.eventMapper = eventMapper;
-    }
 
     public List<EventFullDTO> getAdminEvents(List<Long> users, List<State> states, List<Long> categories,
                                              String rangeStart, String rangeEnd, Pageable pageable) {

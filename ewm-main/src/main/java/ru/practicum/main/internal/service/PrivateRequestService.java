@@ -36,7 +36,7 @@ public class PrivateRequestService {
 
         RequestStatus status;
 
-        Integer confirmedRequests = requestRepository
+        int confirmedRequests = requestRepository
                 .findByEventIdAndStatus(eventId, RequestStatus.CONFIRMED).size();
 
         requestRepository.findByEventAndRequesterId(eventId, userId).ifPresent(request -> {

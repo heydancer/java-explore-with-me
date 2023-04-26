@@ -9,7 +9,6 @@ import ru.practicum.main.common.dto.CommentShortDTO;
 import ru.practicum.main.common.exception.NotFoundException;
 import ru.practicum.main.common.mapper.CommentMapper;
 import ru.practicum.main.common.model.Comment;
-import ru.practicum.main.common.model.Event;
 import ru.practicum.main.common.repository.CommentRepository;
 import ru.practicum.main.common.repository.EventRepository;
 
@@ -37,8 +36,8 @@ public class PublicCommentService {
         return commentMapper.toCommentDTO(comment);
     }
 
-    private Event checkEvent(long eventId) {
-        return eventRepository.findById(eventId)
+    private void checkEvent(long eventId) {
+        eventRepository.findById(eventId)
                 .orElseThrow(() -> new NotFoundException(
                         String.format("Failed to find event with id=%s", eventId)));
     }

@@ -1,6 +1,6 @@
 package ru.practicum.main.admin.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,16 +15,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class AdminUserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-
-    @Autowired
-    public AdminUserService(UserRepository userRepository, UserMapper userMapper) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
 
     @Transactional
     public UserDTO addUser(NewUserRequest newUserRequest) {
